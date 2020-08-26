@@ -15,12 +15,14 @@ def compare_voices(event, context):
     else:
         raise ValueError('Data sector is missing in the Pub/Sub message.')
 
+    print(message)
+
     dic = dict(message)
     dic['score'] = .5
 
     with datastore_client.transaction():
-        incomplete_key = datastore_client.key('RecordedVoice')
+        incomplete_key = datastore_client.key('Statistics')
         user = datastore.Entity(key=incomplete_key)
-        user.update({"score", })
-        datastore_client.put(dic)
+        user.update(dic)
+        datastore_client.put(user)
 
