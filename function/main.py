@@ -24,7 +24,7 @@ def compare_voices(event, context):
     dic['score'] = random.uniform(.5, .99)
 
 
-    rows = [(dic['parentId'], dic['userId'], '2016-05-19T10:38:47.046465')]
+    rows = [(dic['parentId'], dic['userId'], dic['score'], '2016-05-19T10:38:47.046465')]
 
     table = client.get_table(table_id)
     errors = client.insert_rows(table, rows)
