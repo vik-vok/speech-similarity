@@ -9,7 +9,8 @@ from google.cloud import bigquery
 project_id = 'speech-similarity'
 datastore_client = datastore.Client(project_id)
 client = bigquery.Client()
-table_id = 'speech-similarity:statistics.recorded_voices'
+table_id = 'speech-similarity.statistics.recorded_voices'
+
 
 def compare_voices(event, context):
     if event.get('data'):
@@ -24,8 +25,10 @@ def compare_voices(event, context):
     dic['score'] = random.uniform(.5, .99)
 
 
-    rows = [(dic['parentId'], dic['userId'], dic['score'], '2016-05-19T10:38:47.046465')]
+    rows = [(dic['voiceId'], dic['parentId'], dic['userId'], dic['score'], '2016-05-19T10:38:47.046465')]
+ 
 
+    
     table = client.get_table(table_id)
     errors = client.insert_rows(table, rows)
 
