@@ -25,8 +25,8 @@ def compare_voices(event, context):
     dic['score'] = random.uniform(.5, .99)
 
 
-    rows = [(dic['originalVoiceId'], dic['userId'], dic['score'], '2016-05-19T10:38:47.046465', dic['recordedVoiceId'])]
- 
+    rows = [(dic['recordedVoiceId'], dic['originalVoiceId'], dic['userId'], dic['score'], '2016-05-19T10:38:47.046465')]
+    
 
     
     table = client.get_table(table_id)
@@ -36,10 +36,3 @@ def compare_voices(event, context):
         print("New recorded voice added successfully")
     else:
         print(errors)
-
-    # with datastore_client.transaction():
-    #     incomplete_key = datastore_client.key('Statistics')
-    #     user = datastore.Entity(key=incomplete_key)
-    #     user.update(dic)
-    #     datastore_client.put(user)
-
