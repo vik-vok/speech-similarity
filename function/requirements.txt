@@ -1,2 +1,2 @@
 google-cloud-datastore==1.13.2
-google-cloud-bigquery==0.27
+google-cloud-bigquery[pandas,bqstorage,pyarrow]==1.26.1
