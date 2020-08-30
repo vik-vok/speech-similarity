@@ -25,7 +25,7 @@ def compare_voices(event, context):
     dic['score'] = random.uniform(.5, .99)
 
 
-    rows = [(dic['recordedVoiceId'], dic['originalVoiceId'], dic['userId'], dic['score'], '2016-05-19T10:38:47.046465')]
+    rows = [(dic['recordedVoiceId'], dic['originalVoiceId'], dic['userId'], dic['score'], dic['created'])]
     
 
     
