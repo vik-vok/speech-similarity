@@ -66,8 +66,9 @@ def compare_voices(event, context):
     original_voice_url = get_original_url(original_voice_id)
     original_voice_uri = get_uri_from_url(original_voice_url)
 
-    with open('/tmp/original.wav') as obj:
-        client.download_blob_to_file(original_voice_uri, obj)
+    with open('/tmp/original.wav') as objj:
+        client.download_blob_to_file(original_voice_uri, objj)
+
     with open('/tmp/recorded.wav') as obj:
         client.download_blob_to_file(recorded_voice_uri, obj)
 
