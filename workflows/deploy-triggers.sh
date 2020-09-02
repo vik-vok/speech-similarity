@@ -4,7 +4,7 @@ REPO_OWNER="vik-vok"
 
 # cloud-func-name | py_func_name | dir
 array=(
-  'speech-compare-voices':'compare_voices':'functions/'
+  'speech-compare-voices':'compare_voices':'functions'
 )
 
 for i in "${array[@]}"; do

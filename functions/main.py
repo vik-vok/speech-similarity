@@ -23,16 +23,16 @@ table_id = 'speech-similarity.statistics.recorded_voices'
 ORIGINAL_VOICE_URL = 'https://vikvok-anldg2io3q-ew.a.run.app/originalvoices/{}'
 
 
-def get_embedding(path):
-    fpath = Path(path)
-    wav = preprocess_wav(fpath)
-    return encoder.embed_utterance(wav)
-
-
-def similarity(path1, path2):
-    embed1 = get_embedding(path1)
-    embed2 = get_embedding(path2)
-    return spatial.distance.cosine(embed1, embed2)
+# def get_embedding(path):
+#     fpath = Path(path)
+#     wav = preprocess_wav(fpath)
+#     return encoder.embed_utterance(wav)
+#
+#
+# def similarity(path1, path2):
+#     embed1 = get_embedding(path1)
+#     embed2 = get_embedding(path2)
+#     return spatial.distance.cosine(embed1, embed2)
 
 
 def find(s, ch):
