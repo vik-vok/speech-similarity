@@ -1,0 +1,8 @@
+steps:
+  - name: 'docker.io/library/python:3.7'
+    entrypoint: /bin/sh
+    args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
+    dir: '${_DIR}'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['functions', 'deploy', '${_CLOUD_FUNC_NAME}', '--trigger-http', '--runtime=python37', '--region=europe-west1', '--entry-point=${_PY_FUNC_NAME}']
+    dir: '${_DIR}'
