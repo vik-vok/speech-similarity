@@ -89,8 +89,6 @@ def get_mfcc(path):
                                                                                       (frame_length, 1)).T
     frames = pad_signal[indices.astype(numpy.int32, copy=False)]
 
-    print(frames.shape)
-
     frames *= numpy.hamming(frame_length)
     # frames *= 0.54 - 0.46 * numpy.cos((2 * numpy.pi * n) / (frame_length - 1))  # Explicit Implementation
 
