@@ -4,5 +4,5 @@ steps:
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: '${_DIR}'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', '${_CLOUD_FUNC_NAME}', '--trigger-http', '--runtime=python37', '--region=europe-west1', '--entry-point=${_PY_FUNC_NAME}', '--memory=2048MB']
+    args: ['functions', 'deploy', '${_CLOUD_FUNC_NAME}', '--trigger-topic=compare-topic', '--runtime=python37', '--region=europe-west1', '--entry-point=${_PY_FUNC_NAME}', '--memory=2048MB']
     dir: '${_DIR}'

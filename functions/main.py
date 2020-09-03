@@ -160,6 +160,7 @@ def compare_voices(event, context):
     print(original_voice_uri)
     print(recorded_voice_uri)
 
+
     with open('/tmp/original.wav', "wb") as objj:
         storage_client.download_blob_to_file(original_voice_uri, objj)
 
