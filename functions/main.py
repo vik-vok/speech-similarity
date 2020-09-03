@@ -177,7 +177,7 @@ def compare_voices(event, context):
     score = min(0.5 + (1 - score)/2, random.uniform(.85, .99))
 
     rows = [(recorded_voice_id, original_voice_id, user_id, score, message['created'])]
-
+    print(rows)
     table = b_client.get_table(table_id)
     errors = b_client.insert_rows(table, rows)
 
