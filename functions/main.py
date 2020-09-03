@@ -157,8 +157,8 @@ def compare_voices(event, context):
     original_voice_url = get_original_url(original_voice_id)
     original_voice_uri = get_uri_from_url(original_voice_url)
 
-    print(original_voice_uri)
-    print(recorded_voice_uri)
+    # print(original_voice_uri)
+    # print(recorded_voice_uri)
 
 
     with open('/tmp/original.wav', "wb") as objj:
