@@ -5,26 +5,24 @@ import requests
 
 from google.cloud import bigquery
 from google.cloud import storage
+from google.cloud import pubsub_v1
 # import os
 # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/nikalosa/Desktop/MACS/Final Project/MicroServices/Speech-Similarity-e6a5d5620dac.json"
 
 from scipy import spatial
 import numpy
 from scipy.fftpack import dct
-import matplotlib.pyplot as plt
 import librosa
 from sklearn.decomposition import PCA
 
-# from resemblyzer import VoiceEncoder, preprocess_wav
-# from pathlib import Path
-# from scipy import spatial
-
-# encoder = VoiceEncoder()
-
 project_id = 'speech-similarity'
+table_id = 'speech-similarity.statistics.recorded_voices'
+CHALLENGE_TOPIC = "challenge-topic"
+
 b_client = bigquery.Client()
 storage_client = storage.Client()
-table_id = 'speech-similarity.statistics.recorded_voices'
+publisher = pubsub_v1.PublisherClient()
+
 
 ORIGINAL_VOICE_URL = 'https://vikvok-anldg2io3q-ew.a.run.app/originalvoices/{}'
 
@@ -179,6 +177,11 @@ def compare_voices(event, context):
     print(rows)
     table = b_client.get_table(table_id)
     errors = b_client.insert_rows(table, rows)
+
+    message_data = json.dumps({"receiverUserId": user_id, "score": score}).encode('utf-8')
+    topic_path = publisher.topic_path(project_id, CHALLENGE_TOPIC)
+    future = publisher.publish(topic_path, data=message_data)
+    future.result()
 
     if errors == []:
         print("New recorded voice added successfully")

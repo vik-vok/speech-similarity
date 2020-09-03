@@ -7,6 +7,7 @@ google-cloud-core==1.4.1
 google-cloud-storage==1.30.0
 google-crc32c==0.1.0
 google-resumable-media==0.7.1
+google-cloud-pubsub==0.38.0
 httplib2==0.18.1
 librosa==0.8.0
 matplotlib==3.3.1
@@ -16,3 +17,4 @@ requests==2.24.0
 scikit-learn==0.23.2
 scipy==1.5.2
 urllib3==1.25.10
+
