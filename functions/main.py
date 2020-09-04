@@ -179,7 +179,7 @@ def compare_voices(event, context):
     table = b_client.get_table(table_id)
     errors = b_client.insert_rows(table, rows)
 
-    message_data = json.dumps({"receiverUserId": user_id, "originalVoiceId": str(original_voice_id), "score": str(score)}).encode('utf-8')
+    message_data = json.dumps({"receiverUserId": user_id, "originalVoiceId": str(original_voice_id), "score": str(int(100*score))}).encode('utf-8')
     topic_path = publisher.topic_path(project_id, CHALLENGE_TOPIC)
     future = publisher.publish(topic_path, data=message_data)
     future.result()
