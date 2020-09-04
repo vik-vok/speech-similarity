@@ -2,6 +2,7 @@ import base64
 import json
 import random
 import requests
+import urllib
 
 from google.cloud import bigquery
 from google.cloud import storage
@@ -46,7 +47,7 @@ def find(s, ch):
 def get_uri_from_url(url):
     uri = 'gs://{}'
     path = url[find(url, '/')[-2]+1:]
-    return uri.format(path)
+    return urllib.parse.unquote(uri.format(path))
 
 
 def get_original_url(original_voice_id):
@@ -178,7 +179,7 @@ def compare_voices(event, context):
     table = b_client.get_table(table_id)
     errors = b_client.insert_rows(table, rows)
 
-    message_data = json.dumps({"receiverUserId": user_id, "originalVoiceId": original_voice_id, "score": score}).encode('utf-8')
+    message_data = json.dumps({"receiverUserId": user_id, "originalVoiceId": str(original_voice_id), "score": score}).encode('utf-8')
     topic_path = publisher.topic_path(project_id, CHALLENGE_TOPIC)
     future = publisher.publish(topic_path, data=message_data)
     future.result()
